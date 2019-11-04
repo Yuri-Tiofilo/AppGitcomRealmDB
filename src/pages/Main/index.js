@@ -1,19 +1,27 @@
-import React from 'react';
+import React, {useState} from 'react';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import {Container, Title, Form, Input, Submit, List} from './styles';
 import Repository from '~/components/Repository';
 
 export default function Main() {
+  const [input, setInput] = useState('');
+
+  function handleAddRepository() {
+    console.log('entou');
+  }
+
   return (
     <Container>
       <Title>Repositórios</Title>
       <Form>
         <Input
+          value={input}
+          onChangeText={setInput}
           autoCapitalize="none"
           autoCorrect={false}
           placeholder="Procurar repositório"
         />
-        <Submit onPress={() => {}}>
+        <Submit onPress={handleAddRepository}>
           <Icon name="add" size={22} color="#ffff" />
         </Submit>
       </Form>
