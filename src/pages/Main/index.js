@@ -1,6 +1,7 @@
 import React from 'react';
 import Icon from 'react-native-vector-icons/MaterialIcons';
-import {Container, Title, Form, Input, Submit} from './styles';
+import {Container, Title, Form, Input, Submit, List} from './styles';
+import Repository from '~/components/Repository';
 
 export default function Main() {
   return (
@@ -18,8 +19,19 @@ export default function Main() {
       </Form>
       <List
         keyboardShouldPersistTaps="handled"
-        data={[]}
+        data={[
+          {
+            id: 1,
+            name: 'unform',
+            description:
+              'ReactJS form library to create uncontrolled form structures with nested fields, validations and much more!',
+            stars: 1234,
+            forks: 133,
+          },
+        ]}
         keyExtractor={item => String(item.id)}
+        renderItem={({item}) => <Repository data={item} />}
+      />
     </Container>
   );
 }
