@@ -1,4 +1,6 @@
 import React, {useState} from 'react';
+import api from '~/services/api';
+import getRealm from '~/services/realm';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import {Container, Title, Form, Input, Submit, List} from './styles';
 import Repository from '~/components/Repository';
@@ -6,8 +8,32 @@ import Repository from '~/components/Repository';
 export default function Main() {
   const [input, setInput] = useState('');
 
-  function handleAddRepository() {
-    console.log('entou');
+  async function saveRepository(repository) {
+    const data = {
+      id: repository.id,
+      name: repository.name,
+      fullName: repository.full_name,
+      description: repository.description,
+      stars: repository.stargazers_count,
+      forks: repository.forks_count,
+    };
+    const realm = await getRealm();
+
+    realm.write(() => {
+      realm.create('Repository', data);
+    });
+  }
+
+  async function handleAddRepository() {
+    try {
+      const response = await api.get(`/repos/${input}`);
+
+      await saveRepository(response.data);
+
+      setInput('');
+    } catch (err) {
+      console.log('deu merda');
+    }
   }
 
   return (
