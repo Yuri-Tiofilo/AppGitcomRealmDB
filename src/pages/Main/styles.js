@@ -14,10 +14,31 @@ export const Title = styled.Text`
   color: #fff;
   font-weight: bold;
   padding: 0 20px;
+  margin-top: 40px;
 `;
 
-export const Form = styled.View``;
+export const Form = styled.View`
+  flex-direction: row;
+  margin-top: 10px;
+  padding: 0 20px;
+`;
 
-export const Input = styled.TextInput``;
+export const Input = styled.TextInput.attrs({
+  placeholderTextColor: '#999999',
+})`
+  flex: 1;
+  padding: 12px 15px;
+  border-radius: 4px;
+  font-size: 16px;
+  color: #333;
+  background: #ffff;
+  border: 0;
+`;
 
-export const Submit = styled.TouchableOpacity``;
+export const Submit = styled.TouchableOpacity`
+  background: #6bd4c1;
+  margin-left: 10px;
+  justify-content: center;
+  border-radius: 4px;
+  padding: 0 16px;
+`;

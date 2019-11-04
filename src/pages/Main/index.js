@@ -1,6 +1,6 @@
 import React from 'react';
+import Icon from 'react-native-vector-icons/MaterialIcons';
 import {Container, Title, Form, Input, Submit} from './styles';
-import Icon from 'react-native-vector-icons';
 
 export default function Main() {
   return (
@@ -10,12 +10,16 @@ export default function Main() {
         <Input
           autoCapitalize="none"
           autoCorrect={false}
-          placeholder="Procure um Repositório"
+          placeholder="Procurar repositório"
         />
         <Submit onPress={() => {}}>
-          <Icon name="add" size={22} color="#FFF" />
+          <Icon name="add" size={22} color="#ffff" />
         </Submit>
       </Form>
+      <List
+        keyboardShouldPersistTaps="handled"
+        data={[]}
+        keyExtractor={item => String(item.id)}
     </Container>
   );
 }
