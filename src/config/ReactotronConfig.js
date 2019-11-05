@@ -1,15 +1,13 @@
 import Reactotron from 'reactotron-react-native';
 
+import {Platform} from 'react-native';
+// onde host é o ip da sua maquina
 if (__DEV__) {
-  const tron = Reactotron.configure({
-    enabled: true,
-    host: '192.168.78.101',
-    port: 9090,
-  })
+  const tron = Reactotron.configure(
+    Platform.OS === 'ios' ? null : {host: '192.168.56.1'},
+  )
     .useReactNative()
     .connect();
-
-  tron.clear();
-
   console.tron = tron;
+  tron.clear();
 }
