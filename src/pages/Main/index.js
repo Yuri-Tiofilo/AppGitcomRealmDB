@@ -17,16 +17,22 @@ export default function Main() {
       stars: repository.stargazers_count,
       forks: repository.forks_count,
     };
-    const realm = await getRealm();
-
-    realm.write(() => {
-      realm.create('Repository', data);
-    });
+    try {
+      const realm = await getRealm();
+      realm.write(() => {
+        realm.create('Repository2', data);
+      });
+      console.tron.log('deu certo');
+    } catch (err) {
+      console.tron.log(err.message);
+    }
   }
 
   async function handleAddRepository() {
     try {
-      const response = await api.get(`/repos/${input}`);
+      const response = await api.get(
+        '/repos/Andersonfrfilho/ModeloReactNativeSemRedux',
+      );
 
       await saveRepository(response.data);
 
@@ -35,7 +41,6 @@ export default function Main() {
       console.log('deu merda');
     }
   }
-
   return (
     <Container>
       <Title>Repositórios</Title>
@@ -47,7 +52,7 @@ export default function Main() {
           autoCorrect={false}
           placeholder="Procurar repositório"
         />
-        <Submit onPress={handleAddRepository}>
+        <Submit onPress={() => handleAddRepository()}>
           <Icon name="add" size={22} color="#ffff" />
         </Submit>
       </Form>

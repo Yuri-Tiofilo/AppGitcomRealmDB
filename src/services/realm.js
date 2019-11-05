@@ -1,8 +1,10 @@
 import Realm from 'realm';
-import RepositorySchema from '../schemas/RepositorySchema';
+
+import Schemas from '../schemas';
 
 export default function getRealm() {
+  const {Products} = Schemas;
   return Realm.open({
-    schema: [RepositorySchema],
+    schema: [Products],
   });
 }

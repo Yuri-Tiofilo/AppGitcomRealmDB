@@ -1,6 +1,6 @@
-export default class RepositorySchema {
+export default class ProductSchema {
   static schema = {
-    name: 'Repository',
+    name: 'Repository2',
     primaryKey: 'id',
     properties: {
       id: {type: 'int', indexed: true},
